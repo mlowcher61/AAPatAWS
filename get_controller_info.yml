@@ -53,7 +53,7 @@
         controller_password: "{{ controller_passwd }}"
         controller_username: "{{ controller_user }}"
         controller_oauthtoken: "{{ new_token.json.token }}"
-        name: "{{ my_aws_controller }}"
+        name: "{{ instance_info.instances[0].public_dns_name }}"
         inventory: "AAP AWS Inventory - Managed"
         state: present
         enabled: true
