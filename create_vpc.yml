@@ -1,5 +1,5 @@
 ---
-  - name: Create AWS VPC for Ansible Automation Platform
+  - name: Create AWS VPC for Ansible Automation Platform deployment
     hosts: localhost
     connection: local
     gather_facts: no
