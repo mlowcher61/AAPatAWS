@@ -39,7 +39,7 @@
           - createsecgrp
           - onlyvpc
         register: my_security_group
-        amazon.aws.ec2_group:
+        amazon.aws.ec2_security_group:
           name: "{{ ec2_security_group_name }}"
           description: Security group with rule descriptions created by Ansible
           vpc_id: "{{ my_vpc.vpc.id }}"
