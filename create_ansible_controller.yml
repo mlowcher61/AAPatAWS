@@ -23,7 +23,6 @@
           vpc_subnet_id: "{{subnet_id.subnets[0].id}}"
 
       - name: Creating {{count}} AWS Ansible Controller VM in {{region}}
-        register: my_controller_info
         amazon.aws.ec2_instance:
           name: "Ansible Controller"
           region: "{{region}}"
@@ -40,8 +39,4 @@
             Createdby: Ansible Controller
             Contact: "{{my_email_address}}"
             DeletebBy: "{{ec2_ansible_group}}"
-
-      - name: Print out my_controller_info
-        debug:
-          var: my_controller_info
       
