@@ -1,0 +1,41 @@
+---
+  - name: Create RHEL instances needed for Ansible Environment
+    hosts: localhost
+    connection: local
+    gather_facts: no
+    vars:
+       ec2_security_group_name: "{{vpc_name}}_SECGRP"
+       ec2_ansible_group: "{{user_name}}"
+       my_email_address: "{{user_name}}@redhat.com"
+
+    tasks:
+
+      - name: Looking Up Subnet_id for {{subnet_name}} if vpc_subnet_id doesn't exist
+        register: subnet_id
+        amazon.aws.ec2_vpc_subnet_info:
+          region: "{{region}}"
+          filters:
+            "tag:Name": "{{subnet_name}}"
+
+      - name: Setting vpc_subnet_id based on Lookup of {{subnet_name}}
+        when: vpc_subnet_id is undefined
+        ansible.builtin.set_fact:
+          vpc_subnet_id: "{{subnet_id.subnets[0].id}}"
+
+      - name: Creating {{count}} AWS Ansible Controller VM in {{region}}
+        tags:
+          Environment: AAP_Deployment
+          AlwaysUp: "{{alwaysup}}"
+          Createdby: Ansible Controller
+          Contact: "{{my_email_address}}"
+          DeletebBy: "{{ec2_ansible_group}}"
+        amazon.aws.ec2_instance:
+          name: "Ansible Controller"
+          region: "{{region}}"
+          key_name: "zigfreed-ssh-key"
+          vpc_subnet_id: "{{vpc_subnet_id}}"
+          instance_type: "{{instance_type}}"
+          security_group: "{{ec2_security_group_name}}"
+          network:
+            assign_public_ip: "{{assign_public_ip}}"
+          image_id: "{{image}}"
