@@ -66,13 +66,17 @@
             cidr_ip: 0.0.0.0/0
             rule_desc: allow all on port 80
           - proto: tcp
-            ports: 9090
+            ports: 443
             cidr_ip: 0.0.0.0/0
-            rule_desc: allow all on port 9090 cockpit
+            rule_desc: allow all on port 443
           - proto: tcp
-            ports: 3306
+            ports: 5432
             cidr_ip: 0.0.0.0/0
-            rule_desc: allow all on port 3306
+            rule_desc: allow all on port 5432
+          - proto: tcp
+            ports: 27199
+            cidr_ip: 0.0.0.0/0
+            rule_desc: allow all on port 27199
 
       - name: "Create {{ ec2_vpc_subnet_name }} subnet"
         tags:
@@ -105,7 +109,7 @@
           tags:
             Name: "{{ec2_igw_name}}"
             ansible_group: "{{ ec2_ansible_group }}"
-            Createdby: Ansible Tower
+            Createdby: Ansible Controller
             Contact: "{{my_email_address}}"
             DeletebBy: "{{deleteby}}"
 
