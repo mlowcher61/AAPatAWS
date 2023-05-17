@@ -24,13 +24,13 @@
          msg: "{{ instance_info.instances[0].instance_id }}"
 
     - name: Capture public dns name
-      register: my_server
+      register: my_controller
       ansible.builtin.set_stats:
         data:
-          my_server: "{{ instance_info.instances[0].public_dns_name }}"
+          my_controller: "{{ instance_info.instances[0].public_dns_name }}"
 
     - name: Capture public ip address
-      register: my_public_ip
+      register: my_controller_public_ip
       ansible.builtin.set_stats:
         data:
-          my_public_ip: "{{ instance_info.instances[0].public_ip_address }}"
+          my_controller_public_ip: "{{ instance_info.instances[0].public_ip_address }}"
