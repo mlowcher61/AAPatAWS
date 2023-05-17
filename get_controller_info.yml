@@ -24,13 +24,36 @@
          msg: "{{ instance_info.instances[0].instance_id }}"
 
     - name: Capture public dns name
-      register: my_controller
+      register: my_aws_controller
       ansible.builtin.set_stats:
         data:
-          my_controller: "{{ instance_info.instances[0].public_dns_name }}"
+          my_aws_controller: "{{ instance_info.instances[0].public_dns_name }}"
 
     - name: Capture public ip address
-      register: my_controller_public_ip
+      register: my_aws_controller_public_ip
       ansible.builtin.set_stats:
         data:
-          my_controller_public_ip: "{{ instance_info.instances[0].public_ip_address }}"
+          my_aws_controller_public_ip: "{{ instance_info.instances[0].public_ip_address }}"
+
+    - name: Get an AAP API Token and store it as new_token
+      register: new_token
+      ansible.builtin.uri:
+        url: "https://{{ controller_url }}/api/v2/tokens/"
+        method: POST
+        user: "{{ controller_user }}"
+        password: "{{ controller_passwd }}"
+        validate_certs: no
+        force_basic_auth: yes
+        status_code: 201
+        return_content: yes       
+
+    - name: Update the AAP AWS Managed Inventory
+      awx.awx.host:
+        controller_host: "https://{{ controller_url }}"
+        controller_password: "{{ controller_passwd }}"
+        controller_username: "{{ controller_user }}"
+        controller_oauthtoken: "{{ new_token.json.token }}"
+        name: "{{ my_aws_controller }}"
+        inventory: "AAP AWS Inventory - Managed"
+        state: present
+        enabled: true
