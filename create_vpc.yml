@@ -30,10 +30,6 @@
             Contact: "{{my_email_address}}"
             DeletebBy: "{{deleteby}}"
 
-      - name: "Display my_vpc.vpc.id info for {{vpc_name}}"
-        ansible.builtin.debug:
-          var: my_vpc.vpc.id
-
       - name: "create security group {{ ec2_security_group_name }}"
         tags:
           - createsecgrp
