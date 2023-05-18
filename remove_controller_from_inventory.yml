@@ -40,4 +40,3 @@
           name: "{{ my_aws_controller }}"
           inventory: "AAP AWS Inventory - Managed"
           state: absent
-          enabled: false
