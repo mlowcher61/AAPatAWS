@@ -4,12 +4,7 @@
   gather_facts: true
   
   tasks:
-    
-    - name: Installing RHEL system roles
-      ansible.builtin.dnf:
-        name: rhel-system-roles
-        state: present
-    
+        
     - name: Upgrade all packages
       ansible.builtin.yum:
         name: '*'
