@@ -6,3 +6,4 @@ collections:
 - name: community.aws
 - name: servicenow.itsm
 - name: awx.awx
+- name: redhat.rhel_system_roles
