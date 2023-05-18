@@ -1,7 +1,7 @@
 ---
 - name: Format the disk
   hosts: "{{ my_aws_controller }}"
-  gather_facts: no
+  gather_facts: yes
 
   roles:
     - name: redhat.rhel_system_roles.storage
