@@ -56,23 +56,27 @@
           - proto: tcp
             ports: 22
             cidr_ip: 0.0.0.0/0
-            rule_desc: allow all on port 22
+            rule_desc: allow all on port 22 secure shell
           - proto: tcp
             ports: 80
             cidr_ip: 0.0.0.0/0
-            rule_desc: allow all on port 80
+            rule_desc: allow all on port 80 nginx
           - proto: tcp
             ports: 443
             cidr_ip: 0.0.0.0/0
-            rule_desc: allow all on port 443
+            rule_desc: allow all on port 443 nginx
           - proto: tcp
             ports: 5432
             cidr_ip: 0.0.0.0/0
-            rule_desc: allow all on port 5432
+            rule_desc: allow all on port 5432 Postgres
+          - proto: tcp
+            ports: 9090
+            cidr_ip: 0.0.0.0/0
+            rule_desc: allow all on port 9090 Cockpit
           - proto: tcp
             ports: 27199
             cidr_ip: 0.0.0.0/0
-            rule_desc: allow all on port 27199
+            rule_desc: allow all on port 27199 Receptor
 
       - name: "Create {{ ec2_vpc_subnet_name }} subnet"
         tags:
