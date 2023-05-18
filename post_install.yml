@@ -5,6 +5,11 @@
   
   tasks:
     
+    - name: Installing Userland logical volume management tools
+      ansible.builtin.dnf:
+        name: lvm2
+        state: latest
+    
     - name: Upgrade all packages
       ansible.builtin.yum:
         name: '*'
