@@ -41,12 +41,12 @@
             Contact: "{{my_email_address}}"
             DeletebBy: "{{ec2_ansible_group}}"
       
-      # - name: Create the storage volume we need
-      #   loop: "{{ ec2_vms.instances }}"
-      #   amazon.aws.ec2_vol:
-      #     instance: "{{ item.instance_id }}"
-      #     volume_size: 120
-      #     name: "My Controller Volume"
-      #     device_name: /dev/xvdf
-      #     region: "{{ region }}"
+      - name: Create the storage volume we need
+        loop: "{{ ec2_vms['instances'] }}"
+        amazon.aws.ec2_vol:
+          instance: "{{ item['instance_id'] }}"
+          volume_size: 120
+          name: "My Controller Volume"
+          device_name: /dev/xvdf
+          region: "{{ region }}"
           
