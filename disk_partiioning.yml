@@ -15,7 +15,7 @@
               mount_point: "/var"
               fs_type: xfs
               state: present
-            - name: lib-awx
+            - name: varlibawx
               size: "50 GiB"
               fs_type: xfs
               mount_point: "/var/lib/awx"
