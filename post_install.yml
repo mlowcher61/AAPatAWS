@@ -5,10 +5,10 @@
   
   tasks:
     
-    - name: Installing Userland logical volume management tools
+    - name: Installing RHEL system roles
       ansible.builtin.dnf:
-        name: lvm2
-        state: latest
+        name: rhel-system-roles
+        state: present
     
     - name: Upgrade all packages
       ansible.builtin.yum:
