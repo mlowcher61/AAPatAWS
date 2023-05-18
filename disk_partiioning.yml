@@ -1,0 +1,22 @@
+---
+- name: Format the disk
+  hosts: "{{ my_aws_controller }}"
+  gather_facts: no
+
+  roles:
+    - name: rhel-system-roles.storage
+      storage_pools:
+        - name: ansible
+          disks:
+            - /dev/nvme1n1
+          volumes:
+            - name: var
+              size: "50 GiB"
+              mount_point: "/var"
+              fs_type: xfs
+              state: present
+            - name: lib-awx
+              size: "50 GiB"
+              fs_type: xfs
+              mount_point: "/var/lib/awx"
+              state: present
