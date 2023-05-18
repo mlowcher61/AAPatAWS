@@ -47,6 +47,6 @@
           instance: "{{ item['instance_id'] }}"
           volume_size: 120
           name: "My Controller Volume"
-          device_name: /dev/xvdf
+          device_name: /dev/sdb1
           region: "{{ region }}"
           
