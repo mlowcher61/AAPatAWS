@@ -4,7 +4,7 @@
   gather_facts: no
 
   roles:
-    - name: - name: redhat.rhel_system_roles.storage
+    - name: redhat.rhel_system_roles.storage
       storage_pools:
         - name: ansible
           disks:
