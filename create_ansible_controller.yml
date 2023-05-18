@@ -49,4 +49,5 @@
           name: "My Controller Volume"
           device_name: /dev/sdb1
           region: "{{ region }}"
+          delete_on_termination: yes
           
