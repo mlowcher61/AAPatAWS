@@ -1,6 +1,6 @@
 ---
 - name: Update authorized_keys on new machine 
-  hosts: "{{ my_server }}"
+  hosts: "{{ my_aws_controller }}"
   gather_facts: no
 
   tasks:
