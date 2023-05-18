@@ -50,4 +50,3 @@
           device_name: /dev/sdf
           region: "{{ region }}"
           delete_on_termination: yes
-          iops: 1500
