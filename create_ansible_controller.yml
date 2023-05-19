@@ -45,8 +45,10 @@
         loop: "{{ ec2_vms['instances'] }}"
         amazon.aws.ec2_vol:
           instance: "{{ item['instance_id'] }}"
-          volume_size: 150
+          volume_size: 100
           name: "My Controller Volume"
           device_name: /dev/sdf
           region: "{{ region }}"
           delete_on_termination: yes
+          volume_type: gp2
+          iops: 1500
