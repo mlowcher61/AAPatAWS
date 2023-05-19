@@ -5,6 +5,11 @@
 
   tasks:
 
+    - name: Installing unzip
+      ansible.builtin.dnf:
+        name: unzip
+        state: present
+        
     - name: Extract the bundle
       ansible.builtin.unarchive:
         src: https://developers.redhat.com/content-gateway/file/ansible-automation-platform-setup-bundle-2.3-1.tar.gz
