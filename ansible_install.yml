@@ -5,12 +5,8 @@
 
   tasks:
 
-    - name: Get the 2.3 bundle
-      ansible.builtin.get_url:
-        url: https://developers.redhat.com/content-gateway/file/ansible-automation-platform-setup-bundle-2.3-1.tar.gz
-        dest: /root
-
     - name: Extract the bundle
       ansible.builtin.unarchive:
-        src: /root/ansible-automation-platform-setup-bundle-2.3-1.tar.gz
+        src: https://developers.redhat.com/content-gateway/file/ansible-automation-platform-setup-bundle-2.3-1.tar.gz
         dest: /root
+        remote_src: yes
