@@ -10,13 +10,8 @@
           disks:
             - /dev/nvme1n1
           volumes:
-            - name: var
-              size: "50 GiB"
-              mount_point: "/var"
-              fs_type: xfs
-              state: present
             - name: varlibawx
-              size: "50 GiB"
+              size: "100 GiB"
               fs_type: xfs
               mount_point: "/var/lib/awx"
               state: present
