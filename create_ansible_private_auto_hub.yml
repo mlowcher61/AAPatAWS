@@ -44,6 +44,8 @@
           wait_timeout: 600
       
       - name: Create the storage volume we need
+        retries: 10
+        delay: 10
         loop: "{{ ec2_vms['instances'] }}"
         amazon.aws.ec2_vol:
           instance: "{{ item['instance_id'] }}"
