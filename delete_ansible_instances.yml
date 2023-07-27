@@ -18,12 +18,7 @@
          instance-state-name: [ "running"]
          "tag:Contact": "{{ my_email_address }}"
       
-    # - name: Printing out my instance info
-    #   loop: "{{ instance_info['instances'] }}"
-    #   ansible.builtin.debug:
-    #      var: item['instance_id']
-      
-    - name: Setting ec2 nodes to absent
+    - name: Setting AAP_Deployment ec2 nodes to absent
       loop: "{{ instance_info['instances'] }}"
       amazon.aws.ec2_instance:
         region: "{{ region }}"
