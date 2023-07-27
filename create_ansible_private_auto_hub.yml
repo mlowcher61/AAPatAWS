@@ -1,5 +1,5 @@
 ---
-  - name: Create RHEL instances needed for Ansible Automation Controller
+  - name: Create RHEL instances needed for Ansible Private Automation Hub
     hosts: localhost
     connection: local
     gather_facts: no
@@ -22,10 +22,10 @@
         ansible.builtin.set_fact:
           vpc_subnet_id: "{{ subnet_id.subnets[0].id }}"
 
-      - name: Creating {{ count }} AWS Ansible Controller VMs in {{ region }}
+      - name: Creating {{ count }} AWS Ansible Private Automation Hub VMs in {{ region }}
         register: ec2_vms
         amazon.aws.ec2_instance:
-          name: "Ansible Controller {{ count }}"
+          name: "Ansible Private Automation Hub {{ count }}"
           region: "{{ region }}"
           key_name: "zigfreed-ssh-key"
           vpc_subnet_id: "{{ vpc_subnet_id }}"
@@ -46,7 +46,7 @@
         amazon.aws.ec2_vol:
           instance: "{{ item['instance_id'] }}"
           volume_size: 100
-          name: "My Controller Volume"
+          name: "My Private Automation Hub Volume"
           device_name: /dev/sdf
           region: "{{ region }}"
           delete_on_termination: yes
