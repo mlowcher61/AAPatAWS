@@ -45,7 +45,7 @@
 
       - name: Pausing for 20 seconds to allow for the project sync up to finish
         ansible.builtin.pause:
-        seconds: 20
+          seconds: 20
       
       - name: Create the storage volume we need
         loop: "{{ ec2_vms['instances'] }}"
