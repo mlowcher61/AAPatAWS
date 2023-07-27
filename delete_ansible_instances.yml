@@ -21,7 +21,7 @@
     - name: Printing out my instance info
       loop: "{{ instance_info['instances'] }}"
       ansible.builtin.debug:
-         msg: "{{ item.instance_id }}"
+         var: item['instance_id']
       
     # - name: Setting ec2 {{servername}} to absent
     #   when: instance_info.instances[0].instance_id is defined
