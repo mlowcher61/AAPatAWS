@@ -43,7 +43,7 @@
           wait: true
           wait_timeout: 600
 
-      - name: Pausing for 20 seconds to allow for the project sync up to finish
+      - name: Pausing for 30 seconds to allow for the project sync up to finish
         ansible.builtin.pause:
           seconds: 30
       
