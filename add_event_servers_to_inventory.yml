@@ -23,13 +23,13 @@
         var: my_server_data
     
     - name: Update the AAP AWS Managed Inventory with the event drivers
-      loop: "{{ my_server_data['instances']['public_dns_name'] }}"
+      loop: "{{ my_server_data['instances'] }}"
       awx.awx.host:
         controller_host: "https://{{ controller_url }}"
         #controller_password: "{{ controller_passwd }}"
         controller_username: "{{ controller_user }}"
         controller_oauthtoken: "{{ new_token.json.token }}"
-        name: "{{ item }}"
+        name: "{{ item['network_interfaces']['association']['public_dns_name'] }}"
         inventory: "AAP AWS Inventory - Managed"
         state: present
         enabled: true
