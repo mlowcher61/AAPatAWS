@@ -23,7 +23,7 @@
         var: my_server_data
     
     - name: Update the AAP AWS Managed Inventory with the event drivers
-      loop: "{{ my_server_data['results']['ansible_stats']['data']['my_event_driver_public_names'] }}"
+      loop: "{{ my_server_data['instances']['network_interfaces']['association']['public_dns_name'] }}"
       awx.awx.host:
         controller_host: "https://{{ controller_url }}"
         #controller_password: "{{ controller_passwd }}"
