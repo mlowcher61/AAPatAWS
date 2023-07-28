@@ -1,6 +1,6 @@
 ---
 - name: Format the disk
-  hosts: "{{ my_aws_controller }}"
+  hosts: eda,control
   gather_facts: yes
 
   roles:
