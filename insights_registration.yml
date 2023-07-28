@@ -7,7 +7,7 @@
   tasks:
   
   - name: Making sure the packages we are need are installed.
-    ansible.builtin.yum:
+    ansible.builtin.dnf:
       name: 
         - insights-client
       state: present
