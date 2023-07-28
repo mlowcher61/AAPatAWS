@@ -20,6 +20,7 @@
     
     - name: Update the AAP AWS Managed Inventory with the event drivers
       loop: "{{ my_eda_server_data['instances'] }}"
+      register: my_eda_servers
       awx.awx.host:
         controller_host: "https://{{ controller_url }}"
         controller_username: "{{ controller_user }}"
@@ -28,3 +29,12 @@
         inventory: "AAP AWS Inventory - Managed"
         state: present
         enabled: true
+
+    - name: Create a group for our Event Driven Automation servers
+      awx.awx.group:
+        name: eda
+        description: "Event Driven Automation Group"
+        inventory: "AAP AWS Inventory - Managed"
+        hosts:
+          - my_eda_servers
+        preserve_existing_hosts: true
