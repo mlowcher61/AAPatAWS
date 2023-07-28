@@ -36,5 +36,5 @@
         description: "Event Driven Automation Group"
         inventory: "AAP AWS Inventory - Managed"
         hosts:
-          - my_eda_servers
+          - "{{ my_eda_servers }}"
         preserve_existing_hosts: true
