@@ -44,13 +44,10 @@
           wait_timeout: 600
 
       - name: Capture useful server data
-        loop: "{{ ec2_vms['instances'] }}"
         register: my_server_data
         ansible.builtin.set_stats:
           data:
-            my_event_driver_public_names: "{{ item['public_dns_name'] }}"
-            my_event_driver_public_ips: "{{ item['public_ip_address'] }}"
-          per_host: yes
+            my_server_data: "{{ ec2_vms }}"
 
       - name: Debug my_server_data
         ansible.builtin.debug:
