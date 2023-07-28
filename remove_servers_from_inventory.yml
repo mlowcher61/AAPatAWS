@@ -20,7 +20,7 @@
 
       - name: Update the AAP AWS Managed Inventory
         loop: "{{ my_server_list }}"
-        when: my_server_list' is defined
+        when: my_server_list is defined
         awx.awx.host:
           controller_host: "https://{{ controller_url }}"
           controller_password: "{{ controller_passwd }}"
