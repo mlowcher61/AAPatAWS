@@ -11,12 +11,17 @@
         dest: /var.tar.gz
         format: gz
 
+    - name: Empty the /var/directory
+      ansible.builtin.file:
+        path: /var/
+        state: absent
+
   roles:
     - name: redhat.rhel_system_roles.storage
       storage_pools:
         - name: ansible
           disks:
-            - /dev/nvme1n1
+            - /dev/xvdf
           volumes:
             - name: var
               size: "100 GiB"
@@ -29,4 +34,4 @@
     - name: Untar the var directory
       ansible.builtin.unarchive:
         src: /var.tar.gz
-        desst: /var/
+        dest: /var/
