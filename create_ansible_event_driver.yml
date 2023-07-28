@@ -42,6 +42,14 @@
             DeletebBy: "{{ ec2_ansible_group }}"
           wait: true
           wait_timeout: 600
+
+      - name: Capture public dns info from VMs
+        loop: "{{ ec2_vms['instances'] }}"
+        ansible.builtin.set_stats:
+          data:
+            my_event_driver_public_names: "{{ item['public_dns_name'] }}"
+            my_event_driver_public_ips: "{{ item['public_ip_address'] }}"
+          per_host: yes
       
       - name: Create the storage volume we need
         loop: "{{ ec2_vms['instances'] }}"

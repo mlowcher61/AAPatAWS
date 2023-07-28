@@ -47,8 +47,8 @@
         loop: "{{ ec2_vms['instances'] }}"
         ansible.builtin.set_stats:
           data:
-            my_aws_controllers: "{{ item['public_dns_name'] }}"
-            my_aws_controller_public_ips: "{{ item['public_ip_address'] }}"
+            my_private_hub_public_names: "{{ item['public_dns_name'] }}"
+            my_private_hub_public_ips: "{{ item['public_ip_address'] }}"
           per_host: yes
       
       - name: Pausing for 40 seconds to allow for the project sync up to finish
