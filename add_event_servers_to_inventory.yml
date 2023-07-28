@@ -18,6 +18,10 @@
         status_code: 201
         return_content: yes       
 
+    - name: Debug my_event_driver_public_names
+      ansible.builtin.debug:
+        var: my_event_driver_public_names
+    
     - name: Update the AAP AWS Managed Inventory with the event drivers
       loop: "{{ my_event_driver_public_names }}"
       awx.awx.host:
