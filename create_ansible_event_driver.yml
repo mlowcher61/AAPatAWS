@@ -49,9 +49,9 @@
           data:
             my_server_data: "{{ ec2_vms }}"
 
-      - name: Debug my_server_data
-        ansible.builtin.debug:
-          var: my_server_data
+      # - name: Debug my_server_data
+      #   ansible.builtin.debug:
+      #     var: my_server_data
       
       - name: Create the storage volume we need
         loop: "{{ ec2_vms['instances'] }}"
