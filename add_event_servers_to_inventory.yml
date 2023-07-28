@@ -17,10 +17,6 @@
         force_basic_auth: yes
         status_code: 201
         return_content: yes       
-
-    # - name: Debug my_server_data
-    #   ansible.builtin.debug:
-    #     var: my_server_data
     
     - name: Update the AAP AWS Managed Inventory with the event drivers
       loop: "{{ my_eda_server_data['instances'] }}"
