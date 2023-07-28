@@ -30,7 +30,7 @@
         enabled: true
 
     - name: Create a group for our Automation Controllers
-      loop: "{{ my_eda_server_data['instances'] }}"
+      loop: "{{ my_controller_server_data['instances'] }}"
       awx.awx.group:
         controller_host: "https://{{ controller_url }}"
         controller_username: "{{ controller_user }}"
