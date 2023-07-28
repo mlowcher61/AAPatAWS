@@ -3,6 +3,14 @@
   hosts: pah
   gather_facts: yes
 
+  pre_tasks:
+
+    - name: Tar up the var directory
+      community.general.archive:
+        path: /var/
+        dest: /var.tar.gz
+        format: gz
+
   roles:
     - name: redhat.rhel_system_roles.storage
       storage_pools:
@@ -13,5 +21,12 @@
             - name: var
               size: "100 GiB"
               fs_type: xfs
-              mount_point: "/var/lib/awx"
+              mount_point: "/var"
               state: present
+
+  post_tasks:
+
+    - name: Untar the var directory
+      ansible.builtin.unarchive:
+        src: /var.tar.gz
+        desst: /var/
