@@ -1,5 +1,5 @@
 ---
-  - name: Removing "{{ my_aws_controller }}" from AAP AWS Inventory - Managed
+  - name: Removing Servers from AAP AWS Inventory - Managed
     hosts: localhost
     connection: local
     gather_facts: no
@@ -24,6 +24,6 @@
           controller_password: "{{ controller_passwd }}"
           controller_username: "{{ controller_user }}"
           controller_oauthtoken: "{{ new_token.json.token }}"
-          name: "{{ my_aws_controller }}"
+          name: "{{ my_server_list }}"
           inventory: "AAP AWS Inventory - Managed"
           state: absent
