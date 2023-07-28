@@ -32,6 +32,9 @@
 
     - name: Create a group for our Event Driven Automation servers
       awx.awx.group:
+        controller_host: "https://{{ controller_url }}"
+        controller_username: "{{ controller_user }}"
+        controller_oauthtoken: "{{ new_token.json.token }}"
         name: eda
         description: "Event Driven Automation Group"
         inventory: "AAP AWS Inventory - Managed"
