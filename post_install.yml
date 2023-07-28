@@ -1,6 +1,6 @@
 ---
 - name: Linux post install procedures
-  hosts: "{{ my_aws_controller }}"
+  hosts: all
   gather_facts: true
   
   tasks:
