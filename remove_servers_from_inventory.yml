@@ -33,7 +33,7 @@
       - name: Remove inventory host groups
         loop: 
           - eda
-          - controller
+          - control
           - pah
         awx.awx.group:
           controller_host: "https://{{ controller_url }}"
