@@ -45,15 +45,16 @@
 
       - name: Capture useful server data
         loop: "{{ ec2_vms['instances'] }}"
+        register: my_server_data
         ansible.builtin.set_stats:
           data:
             my_event_driver_public_names: "{{ item['public_dns_name'] }}"
             my_event_driver_public_ips: "{{ item['public_ip_address'] }}"
           per_host: yes
 
-      - name: Debug my_event_driver_public_names
+      - name: Debug my_server_data
         ansible.builtin.debug:
-          var: my_event_driver_public_names
+          var: my_server_data
       
       - name: Create the storage volume we need
         loop: "{{ ec2_vms['instances'] }}"
