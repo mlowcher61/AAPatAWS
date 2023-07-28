@@ -42,6 +42,14 @@
             DeletebBy: "{{ ec2_ansible_group }}"
           wait: true
           wait_timeout: 600
+
+      - name: Capture public dns info from VMs
+        loop: "{{ ec2_vms['instances'] }}"
+        ansible.builtin.set_stats:
+          data:
+            my_aws_controllers: "{{ item['public_dns_name'] }}"
+            my_aws_controller_public_ips: "{{ item['public_ip_address'] }}"
+          per_host: yes
       
       - name: Pausing for 40 seconds to allow for the project sync up to finish
         ansible.builtin.pause:
