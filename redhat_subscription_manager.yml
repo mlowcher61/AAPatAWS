@@ -1,6 +1,6 @@
 ---
-- name: Registering system with Red Hat Subscription Management
-  hosts: "{{ my_aws_controller }}"
+- name: Registering systems with Red Hat Subscription Management
+  hosts: all
   gather_facts: no
   # This playbook requires username and password to be input at runtime
   # You can do this with a Survey in the AAP GUI
@@ -17,4 +17,4 @@
         username: "{{ username }}"
         password: "{{ password }}"
         state: "{{ status }}"
-        consumer_name: "{{ my_aws_controller }}"
+        consumer_name: "{{ inventory_hostname }}"
