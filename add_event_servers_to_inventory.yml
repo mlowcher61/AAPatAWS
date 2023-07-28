@@ -29,7 +29,7 @@
         #controller_password: "{{ controller_passwd }}"
         controller_username: "{{ controller_user }}"
         controller_oauthtoken: "{{ new_token.json.token }}"
-        name: "{{ item['network_interfaces']['public_dns_name'] }}"
+        name: "{{ item['public_dns_name'] }}"
         inventory: "AAP AWS Inventory - Managed"
         state: present
         enabled: true
