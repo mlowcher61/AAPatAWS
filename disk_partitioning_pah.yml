@@ -1,0 +1,17 @@
+---
+- name: Format the disk
+  hosts: pah
+  gather_facts: yes
+
+  roles:
+    - name: redhat.rhel_system_roles.storage
+      storage_pools:
+        - name: ansible
+          disks:
+            - /dev/nvme1n1
+          volumes:
+            - name: var
+              size: "100 GiB"
+              fs_type: xfs
+              mount_point: "/var/lib/awx"
+              state: present
