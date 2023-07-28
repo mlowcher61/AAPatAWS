@@ -1,0 +1,10 @@
+---
+  - name: Get a list of all the servers in the inventory
+    hosts: all
+    gather_facts: no
+
+    tasks:
+
+      - name: Print out the list
+        debug:
+          var: ansible_play_hosts_all
