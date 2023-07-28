@@ -52,5 +52,5 @@
           device_name: /dev/sdf
           region: "{{ region }}"
           delete_on_termination: yes
-          volume_type: gp2
+          volume_type: gp3
           iops: 1500
