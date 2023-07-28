@@ -28,3 +28,16 @@
           name: "{{ item }}"
           inventory: "AAP AWS Inventory - Managed"
           state: absent
+
+      - name: Remove inventory host groups
+        loop: 
+          - eda
+          - controller
+          - pah
+        awx.awx.group:
+          controller_host: "https://{{ controller_url }}"
+          controller_username: "{{ controller_user }}"
+          controller_oauthtoken: "{{ new_token.json.token }}"
+          name: "{{ item }}"
+          inventory: "AAP AWS Inventory - Managed"
+          state: absent
