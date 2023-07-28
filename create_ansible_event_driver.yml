@@ -53,3 +53,4 @@
           region: "{{ region }}"
           delete_on_termination: yes
           volume_type: gp2
+          iops: 1500
