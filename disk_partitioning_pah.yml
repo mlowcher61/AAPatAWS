@@ -11,11 +11,6 @@
         dest: /var.tar.gz
         format: gz
 
-    - name: Empty the /var/directory
-      ansible.builtin.file:
-        path: /var/
-        state: absent
-
   roles:
     - name: redhat.rhel_system_roles.storage
       storage_pools:
