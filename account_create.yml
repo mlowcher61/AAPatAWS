@@ -1,6 +1,6 @@
 ---
   - name: Create Local Account
-    hosts: "{{ my_aws_controller }}"
+    hosts: all
     gather_facts: no
     vars:
        ansible_svc_account: "{{ account }}"
