@@ -1,6 +1,6 @@
 ---
 - name: Time to install and configure Ansible Automation Platform
-  hosts: "{{ my_aws_controller }}"
+  hosts: control
   gather_facts: no
 
   tasks:
@@ -12,6 +12,6 @@
         
     - name: Extract the bundle
       ansible.builtin.unarchive:
-        src: https://developers.redhat.com/content-gateway/file/ansible-automation-platform-setup-bundle-2.3-1.tar.gz
+        src: https://developers.redhat.com/content-gateway/file/ansible/Ansible_Automation_Platform_2.4/ansible-automation-platform-setup-bundle-2.4-1-x86_64.tar.gz
         dest: /root
         remote_src: yes
