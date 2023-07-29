@@ -4,14 +4,9 @@
   gather_facts: no
 
   tasks:
-
-    - name: Installing unzip
-      ansible.builtin.dnf:
-        name: unzip
-        state: present
-        
-    - name: Extract the bundle
-      ansible.builtin.unarchive:
-        src: https://developers.redhat.com/content-gateway/file/ansible/Ansible_Automation_Platform_2.4/ansible-automation-platform-setup-bundle-2.4-1-x86_64.tar.gz
-        dest: /root
-        remote_src: yes
+       
+    - name: Get the Ansible Bundle
+      ansible.builtin.get_url:
+        url: https://developers.redhat.com/content-gateway/file/ansible/Ansible_Automation_Platform_2.4/ansible-automation-platform-setup-bundle-2.4-1-x86_64.tar.gz
+        dest: /root/ansible-automation-platform-setup-bundle-2.4-1-x86_64.tar.gz
+        mode: '0755'
