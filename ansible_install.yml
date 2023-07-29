@@ -7,7 +7,7 @@
        
     - name: Get the Ansible Bundle
       ansible.builtin.get_url:
-        url: https://developers.redhat.com/content-gateway/file/ansible/Ansible_Automation_Platform_2.4/ansible-automation-platform-setup-bundle-2.4-1-x86_64.tar.gz
+        url: https://access.cdn.redhat.com/content/origin/files/sha256/95/95f5bfc00f65be7785098bf196f21e76c3eca54f95b203ba8655c80676f665a7/ansible-automation-platform-setup-bundle-2.4-1-x86_64.tar.gz?_auth_=1690602910_dd155491c5ba95d004ebefa47dfe8edb
         dest: /root/ansible-automation-platform-setup-bundle-2.4-1-x86_64.tar.gz
         mode: '0755'
         username: "{{ username }}"
