@@ -45,6 +45,24 @@
         owner: root
         group: root
         mode: u+rw,g-wx,o-wx
+
+    - name: Ensure the /etc/motd is updated to show we are on a EDA Server
+      when: "'eda' in group_names"
+      ansible.builtin.lineinfile:
+        path: /etc/motd
+        line: Ansible Event Driver
+
+    - name: Ensure the /etc/motd is updated to show we are on a PAH server
+      when: "'pah' in group_names"
+      ansible.builtin.lineinfile:
+        path: /etc/motd
+        line: Ansible Private Automation Hub
+
+    - name: Ensure the /etc/motd is updated to show we are on a control server
+      when: "'control' in group_names"
+      ansible.builtin.lineinfile:
+        path: /etc/motd
+        line: Ansible Controller
         
     - name: Copy the new /etc/issue into place
       ansible.builtin.copy:
