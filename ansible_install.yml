@@ -10,6 +10,10 @@
         url: https://developers.redhat.com/content-gateway/file/ansible/Ansible_Automation_Platform_2.4/ansible-automation-platform-setup-bundle-2.4-1-x86_64.tar.gz
         dest: /root/ansible-automation-platform-setup-bundle-2.4-1-x86_64.tar.gz
         mode: '0755'
+    
+    - name: Pause for 10 seconds
+      ansible.builtin.pause:
+        seconds: 10
 
     - name: Untar and unzip the ansible bundle
       ansible.builtin.unarchive:
