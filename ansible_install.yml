@@ -39,3 +39,4 @@
       ansible.builtin.unarchive:
         src: /root/aap.tar.gz
         dest: /root/
+        remote_src: yes
