@@ -7,8 +7,8 @@
        
     - name: Get the Ansible Bundle
       ansible.builtin.get_url:
-        url: https://access.cdn.redhat.com/content/origin/files/sha256/72/72cdff125cbfef9bdda28630a6897d8012a5df71009ee3143e94a34080907779/ansible-automation-platform-setup-2.4-1.tar.gz
-        dest: /var/tmp/ansible-automation-platform-setup-bundle-2.4-1-x86_64.tar.gz
+        url: https://access.cdn.redhat.com/content/origin/files/sha256/01/011a80be33c9b202e94f3a18e673e3d19eb1b2f480c49ef662205443576cfceb/ansible-automation-platform-setup-bundle-2.4-1.1-x86_64.tar.gz
+        dest: /var/tmp/ansible-automation-platform-setup-bundle-2.4-1.1-x86_64.tar.gz
         mode: '0775'
         validate_certs: no
         client_cert: /etc/pki/entitlement/4790000255323135399.pem
