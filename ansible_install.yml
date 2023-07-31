@@ -40,3 +40,7 @@
         src: /root/aap.tar.gz
         dest: /root/
         remote_src: yes
+
+    - name: Ensure we have a public/private ssh key 
+      community.crypto.openssh_keypair:
+        path: /home/ec2-user/.ssh
