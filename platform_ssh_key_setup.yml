@@ -12,9 +12,9 @@
         path: /home/ec2-user/.ssh/id_rsa
         comment: ec2-user@controller.aws
 
-    - name: print 
-      debug:
-        var: ec2_user_controller_aws_pub_key
+    - name: Set a fact 
+      ansible.builtin.set_fact:
+        ec2_user_controller_aws_pub_key: ec2_user_controller_aws_pub_key
 
 - name: Ensure the ec2-user@controller.aws key is in place
   hosts: eda,pah
