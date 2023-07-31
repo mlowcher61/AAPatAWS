@@ -40,14 +40,3 @@
         src: /root/aap.tar.gz
         dest: /root/
         remote_src: yes
-
-    - name: Ensure we have a public/private ssh key
-      register: ec2_user_controller_aws_pub_key
-      become_user: ec2-user 
-      community.crypto.openssh_keypair:
-        path: /home/ec2-user/.ssh/id_rsa
-        comment: ec2-user@controller.aws
-
-    - name: print 
-      debug:
-        var: ec2_user_controller_aws_pub_key

@@ -1,0 +1,29 @@
+---
+- name: Ensure ssh keys are setup on the Ansible Automation Platform
+  hosts: control
+  gather_facts: no
+
+  tasks:
+
+    - name: Ensure we have a public/private ssh key
+      register: ec2_user_controller_aws_pub_key
+      become_user: ec2-user 
+      community.crypto.openssh_keypair:
+        path: /home/ec2-user/.ssh/id_rsa
+        comment: ec2-user@controller.aws
+
+    - name: print 
+      debug:
+        var: ec2_user_controller_aws_pub_key
+
+- name: Ensure the ec2-user@controller.aws key is in place
+  hosts: eda,pah
+  gather_facts: false
+
+  tasks: 
+
+    - name: Ensure the ec2-user@controller.aws key is in authorized_keys file 
+      ansible.posix.authorized_key:
+        user: ec2-user
+        state: present
+        key: "{{ ec2_user_controller_aws_pub_key['public_key'] }} {{ ec2_user_controller_aws_pub_key['comment'] }}"
