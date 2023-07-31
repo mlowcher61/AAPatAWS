@@ -1,6 +1,6 @@
 ---
 - name: Time to install and configure Ansible Automation Platform
-  hosts: contorl
+  hosts: control
   gather_facts: no
   vars:
     aap_bundle_sha_value: 011a80be33c9b202e94f3a18e673e3d19eb1b2f480c49ef662205443576cfceb
