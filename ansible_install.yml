@@ -13,9 +13,3 @@
         validate_certs: no
         client_cert: /etc/pki/entitlement/4790000255323135399.pem
         client_key: /etc/pki/entitlement/4790000255323135399-key.pem
-
-    - name: Untar and unzip the ansible bundle
-      ansible.builtin.unarchive:
-        src: /root/ansible-automation-platform-setup-bundle-2.4-1-x86_64.tar.gz
-        dest: /root/
-        remote_src: true
