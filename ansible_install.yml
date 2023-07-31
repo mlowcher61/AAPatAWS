@@ -1,16 +1,27 @@
 ---
 - name: Time to install and configure Ansible Automation Platform
-  hosts: localhost
-  connection: local
+  hosts: contorl
   gather_facts: no
+  vars:
+    aap_bundle_sha_value: 011a80be33c9b202e94f3a18e673e3d19eb1b2f480c49ef662205443576cfceb
 
   tasks:
        
-    - name: Get the Ansible Bundle
-      ansible.builtin.get_url:
-        url: https://access.cdn.redhat.com/content/origin/files/sha256/01/011a80be33c9b202e94f3a18e673e3d19eb1b2f480c49ef662205443576cfceb/ansible-automation-platform-setup-bundle-2.4-1.1-x86_64.tar.gz
-        dest: /var/tmp/ansible-automation-platform-setup-bundle-2.4-1.1-x86_64.tar.gz
-        mode: '0775'
-        validate_certs: no
-        client_cert: /etc/pki/entitlement/4790000255323135399.pem
-        client_key: /etc/pki/entitlement/4790000255323135399-key.pem
+    - name: Ensure we have a access token
+      register: access_token
+      until: access_token is not failed
+      retries: 1
+      delay: 20
+      ansible.builtin.uri:
+        url: https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token
+        method: POST
+        body_format: form-urlencoded
+        return_content: true
+        body:
+          grant_type: "refresh_token"
+          client_id: "cloud-services"
+          refresh_token: "{{ offline_token }}"
+
+      - name: print shit 
+        debug:
+          var: access_token
