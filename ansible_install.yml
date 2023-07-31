@@ -22,6 +22,6 @@
           client_id: "cloud-services"
           refresh_token: "{{ offline_token }}"
 
-      - name: print shit 
-        debug:
-          var: access_token
+    - name: print shit 
+      debug:
+        var: access_token
