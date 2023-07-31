@@ -1,6 +1,6 @@
 ---
 - name: Time to install and configure Ansible Automation Platform
-  hosts: control
+  hosts: localhost
   gather_facts: no
 
   tasks:
