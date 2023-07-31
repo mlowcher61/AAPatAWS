@@ -30,8 +30,8 @@
       delay: 20
       ansible.builtin.get_url:
         url: "https://api.access.redhat.com/management/v1/images/{{ aap_bundle_sha_value }}/download"
-         headers:
-           accept: "application/json"
-           Authorization: "Bearer {{ access_token.json.access_token }}"
-         dest: ./aap.tar.gz
-         checksum: "sha256: {{ aap_bundle_sha_value }}"
+        headers:
+          accept: "application/json"
+          Authorization: "Bearer {{ access_token.json.access_token }}"
+        dest: ./aap.tar.gz
+        checksum: "sha256: {{ aap_bundle_sha_value }}"
