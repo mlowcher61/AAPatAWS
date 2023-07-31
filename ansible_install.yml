@@ -23,7 +23,6 @@
           refresh_token: "{{ offline_token }}"
 
     - name: Ensure we have the aap.tar.gz
-      delegate_to: localhost
       register: download_aap_tarball
       until: download_aap_tarball is not failed
       retries: 15
@@ -33,5 +32,5 @@
         headers:
           accept: "application/json"
           Authorization: "Bearer {{ access_token.json.access_token }}"
-        dest: ./aap.tar.gz
+        dest: /root/aap.tar.gz
         checksum: "sha256: {{ aap_bundle_sha_value }}"
