@@ -41,6 +41,7 @@
         dest: /root/
         remote_src: yes
 
-    - name: Ensure we have a public/private ssh key 
+    - name: Ensure we have a public/private ssh key
+      become_user: ec2-user 
       community.crypto.openssh_keypair:
         path: /home/ec2-user/.ssh/id_rsa
