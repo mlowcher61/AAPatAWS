@@ -42,11 +42,12 @@
         remote_src: yes
 
     - name: Ensure we have a public/private ssh key
-      register: ec2-user@controller.aws_pub_key
+      register: ec2-user_controller_aws_pub_key
       become_user: ec2-user 
       community.crypto.openssh_keypair:
         path: /home/ec2-user/.ssh/id_rsa
         comment: ec2-user@controller.aws
 
-    - debug:
-        var: ec2-user@controller.aws_pub_key
+    - name: print 
+      debug:
+        var: ec2-user_controller_aws_pub_key
