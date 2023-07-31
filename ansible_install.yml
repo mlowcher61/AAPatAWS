@@ -45,3 +45,4 @@
       become_user: ec2-user 
       community.crypto.openssh_keypair:
         path: /home/ec2-user/.ssh/id_rsa
+        comment: ec2-user@controller.aws
