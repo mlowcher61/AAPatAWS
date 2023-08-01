@@ -6,16 +6,16 @@
   tasks:
 
     - name: Ensure we have a public/private ssh key
-      register: ec2_user_controller_aws_pub_key
+      register: my_ssh_key_data
       become_user: ec2-user 
       community.crypto.openssh_keypair:
         path: /home/ec2-user/.ssh/id_rsa
         comment: ec2-user@controller.aws
 
-    - name: Set a fact 
-      ansible.builtin.set_fact:
-        ec2_user_controller_aws_pub_key: "{{ ec2_user_controller_aws_pub_key }}"
-        cacheable: true
+    - name: Make the key data available later
+      ansible.builtin.set_stats:
+        data:
+          ec2_user_controller_aws_pub_key: "{{ my_ssh_key_data }}"
 
 - name: Ensure the ec2-user@controller.aws key is in place
   hosts: eda,pah
