@@ -14,7 +14,6 @@
       loop: "{{ my_controller_server_data['instances'] }}"
       ansible.builtin.lineinfile:
         path: "{{ aap_bundle_dir.stdout }}/inventory"
-        regexp: '^[automationcontroller]'
         insertafter: '^[automationcontroller]'
         line: "{{ item['public_dns_name'] }}"
         state: present
@@ -23,7 +22,6 @@
       loop: "{{ my_eda_server_data['instances'] }}"
       ansible.builtin.lineinfile:
         path: "{{ aap_bundle_dir.stdout }}/inventory"
-        regexp: '^[automationedacontroller]'
         insertafter: '^[automationedacontroller]'
         line: "{{ item['public_dns_name'] }}"
         state: present
