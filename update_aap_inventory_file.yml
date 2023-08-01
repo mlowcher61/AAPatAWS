@@ -11,18 +11,20 @@
       ansible.builtin.shell: ls -d /root/ansible-automation-platform-setup-bundle*
 
     - name: Ensure the Controller is in the file
+      loop: "{{ my_controller_server_data['instances'] }}"
       ansible.builtin.lineinfile:
         path: "{{ aap_bundle_dir.stdout }}/inventory"
         regexp: '^[automationcontroller]'
         insertafter: '^[automationcontroller]'
-        line: "{{ my_controller_server_data['public_dns_name'] }}"
+        line: "{{ item['public_dns_name'] }}"
 
     - name: Ensure the EDA Server is in the file
+      loop: "{{ my_eda_server_data['instances'] }}"
       ansible.builtin.lineinfile:
         path: "{{ aap_bundle_dir.stdout }}/inventory"
         regexp: '^[automationedacontroller]'
         insertafter: '^[automationedacontroller]'
-        line: "{{ my_eda_server_data['public_dns_name'] }}"
+        line: "{{ item['public_dns_name'] }}"
     
     - name: Ensure admin_password is variablelized
       ansible.builtin.lineinfile:
