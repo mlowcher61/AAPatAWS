@@ -1,22 +1,19 @@
 ---
 - name: Ensure ssh keys are setup on the Ansible Automation Platform
-  hosts: control
+  hosts: all
   gather_facts: false
 
   tasks:
 
     - name: Ensure we have a public/private ssh key
+      when: "'control' in group_names"
       register: my_ssh_key_data
       become_user: ec2-user 
       community.crypto.openssh_keypair:
         path: /home/ec2-user/.ssh/id_rsa
         comment: ec2-user@controller.aws
 
-    - name: Make the key data available later
-      ansible.builtin.set_stats:
-        data:
-          ec2_user_controller_aws_pub_key: "{{ my_ssh_key_data }}"
-
     - name: print shit 
+      when: "'eda','pah' in group_names"
       debug:
         var: my_ssh_key_data
