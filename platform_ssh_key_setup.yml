@@ -13,9 +13,14 @@
         path: /home/ec2-user/.ssh/id_rsa
         comment: ec2-user@controller.aws
 
+    - name: Set fact 
+      ansible.builtin.set_fact:
+        the_ssh_key: "{{ my_ssh_key_data['public_key'] }} {{ my_ssh_key_data['comment'] }}"
+
     - name: print shit 
+      when: "'eda' in group_names"
       ansible.builtin.debug:
-        msg: "{{ my_ssh_key_data['public_key'] }}"
+        var: the_ssh_key
 
     # - name: Ensure authorized key is in place
     #   when: "'eda' in group_names"
