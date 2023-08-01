@@ -14,6 +14,7 @@
         comment: ec2-user@controller.aws
 
     - name: Set fact 
+      when: "'control' in group_names"
       ansible.builtin.set_fact:
         the_ssh_key: "{{ my_ssh_key_data['public_key'] }} {{ my_ssh_key_data['comment'] }}"
 
