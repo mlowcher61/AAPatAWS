@@ -14,6 +14,6 @@
         comment: ec2-user@controller.aws
 
     - name: print shit 
-      when: "'eda','pah' in group_names"
+      when: "'eda' in group_names"
       debug:
         var: my_ssh_key_data
