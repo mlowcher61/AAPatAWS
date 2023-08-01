@@ -15,10 +15,11 @@
     - name: Set a fact 
       ansible.builtin.set_fact:
         ec2_user_controller_aws_pub_key: "{{ ec2_user_controller_aws_pub_key }}"
+        cacheable: true
 
 - name: Ensure the ec2-user@controller.aws key is in place
   hosts: eda,pah
-  gather_facts: true
+  gather_facts: false
 
   tasks: 
 
