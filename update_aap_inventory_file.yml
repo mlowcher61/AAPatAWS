@@ -7,7 +7,7 @@
 
     - name: Ensure we have the AAP bundle directory
       register: aap_bundle_dir
-      become_user: root
+      changed_when: false
       ansible.builtin.shell: ls -d /root/ansible-automation-platform-setup-bundle*
 
     - name: print
