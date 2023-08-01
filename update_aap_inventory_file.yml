@@ -14,16 +14,16 @@
       loop: "{{ my_controller_server_data['instances'] }}"
       ansible.builtin.lineinfile:
         path: "{{ aap_bundle_dir.stdout }}/inventory"
-        insertafter: '^[automationcontroller]'
+        insertafter: '^[automationcontroller]$'
         line: "{{ item['public_dns_name'] }}"
         state: present
-        firstmatch: yes
+        firstmatch: true
 
     - name: Ensure the EDA Server is in the file
       loop: "{{ my_eda_server_data['instances'] }}"
       ansible.builtin.lineinfile:
         path: "{{ aap_bundle_dir.stdout }}/inventory"
-        insertafter: '^[automationedacontroller]'
+        insertafter: '^[automationedacontroller]$'
         line: "{{ item['public_dns_name'] }}"
         state: present
-        firstmatch: yes
+        firstmatch: true
