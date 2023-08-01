@@ -16,15 +16,3 @@
       ansible.builtin.set_stats:
         data:
           the_ssh_key: "{{ my_ssh_key_data['public_key'] }} {{ my_ssh_key_data['comment'] }}"
-
-    # - name: print shit 
-    #   when: "'eda' in group_names"
-    #   ansible.builtin.debug:
-    #     var: the_ssh_key
-
-    # - name: Ensure authorized key is in place
-    #   when: "'eda' in group_names"
-    #   ansible.posix.authorized_key:
-    #     user: ec2-user
-    #     state: present
-    #     key: "{{ my_ssh_key_data['public_key'] }} {{ my_ssh_key_data['comment'] }}"
