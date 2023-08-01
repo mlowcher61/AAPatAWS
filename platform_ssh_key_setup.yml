@@ -27,4 +27,4 @@
       ansible.posix.authorized_key:
         user: ec2-user
         state: present
-        key: "{{ ec2_user_controller_aws_pub_key['public_key'] }} {{ ec2_user_controller_aws_pub_key['comment'] }}"
+        key: "{{ ec2_user_controller_aws_pub_key.public_key }} {{ ec2_user_controller_aws_pub_key.comment }}"
