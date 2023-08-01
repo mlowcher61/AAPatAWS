@@ -17,6 +17,7 @@
         regexp: '^[automationcontroller]'
         insertafter: '^[automationcontroller]'
         line: "{{ item['public_dns_name'] }}"
+        state: present
 
     - name: Ensure the EDA Server is in the file
       loop: "{{ my_eda_server_data['instances'] }}"
@@ -25,3 +26,4 @@
         regexp: '^[automationedacontroller]'
         insertafter: '^[automationedacontroller]'
         line: "{{ item['public_dns_name'] }}"
+        state: present
