@@ -15,7 +15,7 @@
 
     - name: print shit 
       ansible.builtin.debug:
-        msg: "{{ my_ssh_key_data }}"
+        msg: "{{ my_ssh_key_data['public_key'] }}"
 
     # - name: Ensure authorized key is in place
     #   when: "'eda' in group_names"
