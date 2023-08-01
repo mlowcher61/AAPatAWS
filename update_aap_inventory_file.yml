@@ -17,6 +17,7 @@
         insertafter: '^[automationcontroller]'
         line: "{{ item['public_dns_name'] }}"
         state: present
+        firstmatch: yes
 
     - name: Ensure the EDA Server is in the file
       loop: "{{ my_eda_server_data['instances'] }}"
@@ -25,3 +26,4 @@
         insertafter: '^[automationedacontroller]'
         line: "{{ item['public_dns_name'] }}"
         state: present
+        firstmatch: yes
