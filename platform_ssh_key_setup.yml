@@ -13,9 +13,8 @@
         comment: ec2-user@controller.aws
 
     - name: Set a fact 
-      ansible.builtin.set_stats:
-        data:
-          ec2_user_controller_aws_pub_key: "{{ ec2_user_controller_aws_pub_key }}"
+      ansible.builtin.set_fact:
+        ec2_user_controller_aws_pub_key: "{{ ec2_user_controller_aws_pub_key }}"
 
 - name: Ensure the ec2-user@controller.aws key is in place
   hosts: eda,pah
