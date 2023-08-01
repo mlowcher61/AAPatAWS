@@ -25,4 +25,4 @@
 
     - name: print shit 
       debug:
-        var: ec2_user_controller_aws_pub_key
+        var: my_ssh_key_data
