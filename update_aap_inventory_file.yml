@@ -25,9 +25,3 @@
         regexp: '^[automationedacontroller]'
         insertafter: '^[automationedacontroller]'
         line: "{{ item['public_dns_name'] }}"
-    
-    - name: Ensure admin_password is variablelized
-      ansible.builtin.lineinfile:
-        path: "{{ aap_bundle_dir.stdout }}/inventory"
-        regexp: '^admin_password='''
-        line: "admin_password='\{\{ my_admin_password \}\}'"
