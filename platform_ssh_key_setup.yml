@@ -1,27 +1,26 @@
 ---
 - name: Ensure ssh keys are setup on the Ansible Automation Platform
-  hosts: all
+  hosts: control
   gather_facts: false
 
   tasks:
 
     - name: Ensure we have a public/private ssh key
-      when: "'control' in group_names"
       register: my_ssh_key_data
       become_user: ec2-user 
       community.crypto.openssh_keypair:
         path: /home/ec2-user/.ssh/id_rsa
         comment: ec2-user@controller.aws
 
-    - name: Set fact 
-      when: "'control' in group_names"
-      ansible.builtin.set_fact:
-        the_ssh_key: "{{ my_ssh_key_data['public_key'] }} {{ my_ssh_key_data['comment'] }}"
+    - name: Set Stat for the the_ssh_key
+      ansible.builtin.set_stats:
+        data:
+          the_ssh_key: "{{ my_ssh_key_data['public_key'] }} {{ my_ssh_key_data['comment'] }}"
 
-    - name: print shit 
-      when: "'eda' in group_names"
-      ansible.builtin.debug:
-        var: the_ssh_key
+    # - name: print shit 
+    #   when: "'eda' in group_names"
+    #   ansible.builtin.debug:
+    #     var: the_ssh_key
 
     # - name: Ensure authorized key is in place
     #   when: "'eda' in group_names"
