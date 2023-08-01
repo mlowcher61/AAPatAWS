@@ -1,5 +1,5 @@
 ---
-- name: Make the AAP Inventory file is up to date prior to running setup
+- name: Ensure the AAP Inventory file is up to date prior to running setup
   hosts: control
   gather_facts: true
 
