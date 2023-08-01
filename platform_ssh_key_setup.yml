@@ -13,9 +13,13 @@
         path: /home/ec2-user/.ssh/id_rsa
         comment: ec2-user@controller.aws
 
-    - name: Ensure authorized key is in place
-      when: "'eda' in group_names"
-      ansible.posix.authorized_key:
-        user: ec2-user
-        state: present
-        key: "{{ my_ssh_key_data['public_key'] }} {{ my_ssh_key_data['comment'] }}"
+    - name: print shit 
+      ansible.builtin.debug:
+        msg: "{{ my_ssh_key_data }}"
+
+    # - name: Ensure authorized key is in place
+    #   when: "'eda' in group_names"
+    #   ansible.posix.authorized_key:
+    #     user: ec2-user
+    #     state: present
+    #     key: "{{ my_ssh_key_data['public_key'] }} {{ my_ssh_key_data['comment'] }}"
