@@ -1,0 +1,14 @@
+---
+- name: Make the AAP Inventory file is up to date prior to running setup
+  hosts: control
+  gather_facts: true
+
+  tasks:
+
+    - name: Ensure we have the AAP bundle directory
+      register: aap_bundle_dir
+      ansible.builtin.command: ls -d /root/ansible-automation-platform-setup-bundle*
+
+    - name: print
+      debug: 
+        var: aap_bundle_dir
