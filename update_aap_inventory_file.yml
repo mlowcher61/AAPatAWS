@@ -37,4 +37,4 @@
       ansible.builtin.lineinfile:
         path: "{{ aap_bundle_dir.stdout }}/inventory"
         regexp: "{{ item }}=''"
-        line: "{{ item }}='\{\{ PASSWORDGOESHERE \}\}'"
+        line: "{{ item }}='{{ PASSWORDGOESHERE }}'"
