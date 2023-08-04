@@ -18,6 +18,7 @@
         block: | 
           {{ item['public_dns_name'] }}
         state: present
+        marker: ""
 
     - name: Ensure the EDA Server is in the file
       loop: "{{ my_eda_server_data['instances'] }}"
@@ -27,3 +28,4 @@
         block: |
           {{ item['public_dns_name'] }}
         state: present
+        marker: ""
