@@ -12,20 +12,16 @@
 
     - name: Ensure the Controller is in the file
       loop: "{{ my_controller_server_data['instances'] }}"
-      ansible.builtin.blockinfile:
+      ansible.builtin.lineinfile:
         path: "{{ aap_bundle_dir.stdout }}/inventory"
-        insertafter: '^\[automationcontroller\]'
-        block: | 
-          {{ item['public_dns_name'] }}
+        insertafter: '^\\[automationcontroller\\]$'
+        line: "{{ item['public_dns_name'] }}"
         state: present
-        marker: ""
 
     - name: Ensure the EDA Server is in the file
       loop: "{{ my_eda_server_data['instances'] }}"
-      ansible.builtin.blockinfile:
+      ansible.builtin.lineinfile:
         path: "{{ aap_bundle_dir.stdout }}/inventory"
-        insertafter: '^\[automationedacontroller\]'
-        block: |
-          {{ item['public_dns_name'] }}
+        insertafter: '^\\[automationedacontroller\\]$'
+        line: "{{ item['public_dns_name'] }}"
         state: present
-        marker: ""
