@@ -36,5 +36,5 @@
         - "automationedacontroller_pg_password"
       ansible.builtin.lineinfile:
         path: "{{ aap_bundle_dir.stdout }}/inventory"
-        regexp: "^{{ item }}=''$"
+        regexp: "{{ item }}=''"
         line: "{{ item }}='\{\{ PASSWORDGOESHERE \}\}'"
