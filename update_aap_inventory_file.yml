@@ -14,7 +14,7 @@
       loop: "{{ my_controller_server_data['instances'] }}"
       ansible.builtin.blockinfile:
         path: "{{ aap_bundle_dir.stdout }}/inventory"
-        insertafter: '^[automationcontroller]'
+        insertafter: '^\[automationcontroller\]'
         block: | 
           {{ item['public_dns_name'] }}
         state: present
@@ -23,7 +23,7 @@
       loop: "{{ my_eda_server_data['instances'] }}"
       ansible.builtin.blockinfile:
         path: "{{ aap_bundle_dir.stdout }}/inventory"
-        insertafter: '^[automationedacontroller]'
+        insertafter: '^\[automationedacontroller\]'
         block: |
           {{ item['public_dns_name'] }}
         state: present
