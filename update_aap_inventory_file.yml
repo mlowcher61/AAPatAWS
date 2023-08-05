@@ -26,15 +26,15 @@
         line: "{{ item['public_dns_name'] }}"
         state: present
 
-    - name: Ensure we are ready for our password
-      loop:
-        - "admin_password"
-        - "pg_password"
-        - "automationhub_admin_password"
-        - "automationhub_pg_password"
-        - "automationedacontroller_admin_password"
-        - "automationedacontroller_pg_password"
-      ansible.builtin.lineinfile:
-        path: "{{ aap_bundle_dir.stdout }}/inventory"
-        regexp: "{{ item }}=''"
-        line: "{{ item }}=''\\{{ PASSWORDGOESHERE }}''"
+    # - name: Ensure we are ready for our password
+    #   loop:
+    #     - "admin_password"
+    #     - "pg_password"
+    #     - "automationhub_admin_password"
+    #     - "automationhub_pg_password"
+    #     - "automationedacontroller_admin_password"
+    #     - "automationedacontroller_pg_password"
+    #   ansible.builtin.lineinfile:
+    #     path: "{{ aap_bundle_dir.stdout }}/inventory"
+    #     regexp: "{{ item }}=''"
+    #     line: "{{ item }}=''\\{{ PASSWORDGOESHERE }}''"
