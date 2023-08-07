@@ -16,3 +16,15 @@
       ansible.builtin.set_stats:
         data:
           the_ssh_key: "{{ my_ssh_key_data['public_key'] }} {{ my_ssh_key_data['comment'] }}"
+
+    - name: Ensure we have a public/private ssh key for root
+      register: my_ssh_key_data_root
+      become_user: root
+      community.crypto.openssh_keypair:
+        path: /root/.ssh/id_rsa
+        comment: root@controller.aws
+
+    - name: Set Stat for the the_root_ssh_key
+      ansible.builtin.set_stats:
+        data:
+          the_root_ssh_key: "{{ my_ssh_key_data_root['public_key'] }} {{ my_ssh_key_data_root['comment'] }}"    
