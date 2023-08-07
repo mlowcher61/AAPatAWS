@@ -1,0 +1,36 @@
+---
+- name: Ensure the AAP Inventory file is setup to install the Controller
+  hosts: control
+  gather_facts: false
+
+  tasks:
+
+    - name: Ensure we have the AAP bundle directory
+      register: aap_bundle_dir
+      changed_when: false
+      ansible.builtin.shell: ls -d /root/ansible-automation-platform-setup-bundle*
+
+    - name: Ensure the inventory file is configured to install the Controller
+      ansible.builtin.template:
+        src: templates/aap_24_inventory_controller_file.j2
+        dest: "{{ aap_bundle_dir.stdout }}/inventory"
+        owner: root
+        group: root
+        mode: 0644
+        backup: true
+
+    - name: Ensure the Controller is in the file
+      loop: "{{ my_controller_server_data['instances'] }}"
+      ansible.builtin.lineinfile:
+        path: "{{ aap_bundle_dir.stdout }}/inventory"
+        insertafter: '^.automationcontroller.$'
+        line: "{{ item['public_dns_name'] }}"
+        state: present
+
+    # - name: Ensure the EDA Server is in the file
+    #   loop: "{{ my_eda_server_data['instances'] }}"
+    #   ansible.builtin.lineinfile:
+    #     path: "{{ aap_bundle_dir.stdout }}/inventory"
+    #     insertafter: '^.automationedacontroller.$'
+    #     line: "{{ item['public_dns_name'] }}"
+    #     state: present
