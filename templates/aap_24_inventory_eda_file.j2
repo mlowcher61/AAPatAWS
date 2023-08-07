@@ -188,25 +188,25 @@ automationhub_pg_sslmode='prefer'
 # Automation EDA Controller Configuration
 #
 
-automationedacontroller_admin_password='{{ PASSWORDGOESHERE }}'
+automationedacontroller_admin_password='{{ MY_REGISTRY_USERNAME }}'
 
 automationedacontroller_pg_host=''
 automationedacontroller_pg_port=5432
 
 automationedacontroller_pg_database='automationedacontroller'
 automationedacontroller_pg_username='automationedacontroller'
-automationedacontroller_pg_password='{{ PASSWORDGOESHERE }}'
+automationedacontroller_pg_password='{{ MY_REGISTRY_USERNAME }}'
 
 # The full routeable URL used by EDA to connect to a controller host.
 # This URL is required if there is no Automation Controller configured
 # in inventory.
 #
-# automation_controller_main_url = '' 
+automation_controller_main_url = '{{ MY_CONTROLLER_URL }}' 
 
 # Boolean flag used to verify Automation Controller's
 # web certificates when making calls from Automation EDA Controller.
 #
-# automationedacontroller_controller_verify_ssl = true
+automationedacontroller_controller_verify_ssl = true
 
 # SSL-related variables
 
@@ -243,4 +243,4 @@ sso_console_admin_password=''
 
 # The default install will register node to the Red Hat Insights Service
 # if the node is registered with Subscription Manager. Set to False to disable.
-# enable_insights_collection = True
+enable_insights_collection = True
