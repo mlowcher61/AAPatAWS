@@ -5,6 +5,12 @@
 
   tasks:
 
+    - name: Ensure we have the MY_CONTROLLER_URL
+      loop: "{{ my_controller_server_data['instances'] }}"
+      when: ansible_loop.first = true
+      ansible.builtin.set_fact:
+        MY_CONTROLLER_URL: "{{ item['public_dns_name'] }}"
+
     - name: Ensure we have the AAP bundle directory
       register: aap_bundle_dir
       changed_when: false
