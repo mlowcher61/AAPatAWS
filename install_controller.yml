@@ -1,5 +1,5 @@
 ---
-- name: Ensure the AAP Inventory file is setup to install the Controller
+- name: Ensure the controller is setup
   hosts: control
   gather_facts: false
 
@@ -26,6 +26,13 @@
         insertafter: '^.automationcontroller.$'
         line: "{{ item['public_dns_name'] }}"
         state: present
+
+    - name: Run the installer
+      args:
+        chdir: "{{ aap_bundle_dir.stdout }}"
+      ansible.builtin.command:
+        cmd: "{{ aap_bundle_dir.stdout }}/setup.sh"
+      
 
     # - name: Ensure the EDA Server is in the file
     #   loop: "{{ my_eda_server_data['instances'] }}"
