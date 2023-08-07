@@ -1,5 +1,5 @@
 ---
-- name: Ensure the controller is setup
+- name: Ensure the eda controller is setup
   hosts: control
   gather_facts: false
 
