@@ -12,7 +12,7 @@
 
     - name: Ensure the inventory file is configured to install the Controller
       ansible.builtin.template:
-        src: templates/aap_24_inventory_controller_file.j2
+        src: templates/aap_24_inventory_eda_file.j2
         dest: "{{ aap_bundle_dir.stdout }}/inventory"
         owner: root
         group: root
@@ -24,6 +24,14 @@
       ansible.builtin.lineinfile:
         path: "{{ aap_bundle_dir.stdout }}/inventory"
         insertafter: '^.automationcontroller.$'
+        line: "{{ item['public_dns_name'] }}"
+        state: present
+
+    - name: Ensure the EDA Server is in the file
+      loop: "{{ my_eda_server_data['instances'] }}"
+      ansible.builtin.lineinfile:
+        path: "{{ aap_bundle_dir.stdout }}/inventory"
+        insertafter: '^.automationedacontroller.$'
         line: "{{ item['public_dns_name'] }}"
         state: present
 
