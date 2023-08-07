@@ -1,6 +1,6 @@
 ---
 - name: Ensure ssh authorized key files are updated on the EDA and PAH servers
-  hosts: pah,eda
+  hosts: all
   gather_facts: false
 
   tasks:
@@ -14,3 +14,13 @@
         user: ec2-user
         state: present
         key: "{{ the_ssh_key }}"
+
+    - name: Print root public ssh key
+      ansible.builtin.debug:
+        var: the_root_ssh_key
+
+    - name: Ensure authorized key is in place
+      ansible.posix.authorized_key:
+        user: root
+        state: present
+        key: "{{ the_root_ssh_key }}"

@@ -5,7 +5,7 @@
 
   tasks:
 
-    - name: Ensure we have a public/private ssh key
+    - name: Ensure we have a public/private ssh key for ec2-user
       register: my_ssh_key_data
       become_user: ec2-user 
       community.crypto.openssh_keypair:
