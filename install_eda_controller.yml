@@ -44,5 +44,5 @@
     - name: Run the installer
       args:
         chdir: "{{ aap_bundle_dir.stdout }}"
-      ansible.builtin.command:
+      ansible.builtin.shell:
         cmd: "{{ aap_bundle_dir.stdout }}/setup.sh"
