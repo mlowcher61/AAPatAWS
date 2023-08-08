@@ -1,11 +1,11 @@
 ---
-- name: Ensure ssh authorized key files are updated on the EDA and PAH servers
+- name: Ensure ssh authorized key files are updated on all servers
   hosts: all
   gather_facts: false
 
   tasks:
 
-    - name: print shit
+    - name: print ec2-user public ssh key
       ansible.builtin.debug:
         var: the_ssh_key
 

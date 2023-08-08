@@ -1,0 +1,24 @@
+---
+- name: Ensure we update the authorized_keys file
+  hosts: control
+  gather_facts: false
+
+  tasks:
+
+    - name: Ensure the Controller is in the file
+      loop: "{{ my_controller_server_data['instances'] }}"
+      ansible.builtin.command:
+        argv:  
+          - /usr/bin/ssh 
+          - -o
+          - "StrictHostKeyChecking no"
+          - "{{ item['public_dns_name'] }}"
+
+    - name: Ensure the EDA Controller is in the file
+      loop: "{{ my_eda_server_data['instances'] }}"
+      ansible.builtin.command:
+        argv:  
+          - /usr/bin/ssh 
+          - -o
+          - "StrictHostKeyChecking no"
+          - "{{ item['public_dns_name'] }}"
