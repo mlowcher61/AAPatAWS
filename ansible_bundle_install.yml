@@ -32,11 +32,11 @@
         headers:
           accept: "application/json"
           Authorization: "Bearer {{ access_token.json.access_token }}"
-        dest: /root/aap.tar.gz
+        dest: /var/lib/awx/aap.tar.gz
         checksum: "sha256: {{ aap_bundle_sha_value }}"
 
     - name: Ensure the aap bundle is opened up
       ansible.builtin.unarchive:
-        src: /root/aap.tar.gz
-        dest: /root/
+        src: /var/lib/awx/aap.tar.gz
+        dest: /var/lib/awx/
         remote_src: yes
