@@ -5,17 +5,7 @@
 
   tasks:
 
-    - name: print shit out
-      when: "'control' in group_names"
-      loop: "{{ query('inventory_hostnames', 'all') }}"
-      debug:
-        msg: "{{ item }}"
-    
     - name: Ensure the Controller is in the file
       when: "'control' in group_names"
       loop: "{{ query('inventory_hostnames', 'all') }}"
       ansible.builtin.shell: /usr/bin/ssh -o "StrictHostKeyChecking no" {{ item }} date
-
-    # - name: Ensure the EDA Controller is in the file
-    #   loop: "{{ my_eda_server_data['instances'] }}"
-    #   ansible.builtin.shell: /usr/bin/ssh -o "StrictHostKeyChecking no" {{ item['public_dns_name'] }}
