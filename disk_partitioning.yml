@@ -11,7 +11,7 @@
             - /dev/nvme1n1
           volumes:
             - name: varlibawx
-              size: "100 GiB"
+              size: "60 GiB"
               fs_type: xfs
               mount_point: "/var/lib/awx"
               state: present
