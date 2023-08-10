@@ -5,6 +5,12 @@
 
   tasks:
 
+    - name: print shit out
+      when: "'control' in group_names"
+      loop: "{{ query('inventory_hostnames', 'all') }}"
+      debug:
+        msg: "{{ item }}"
+    
     - name: Ensure the Controller is in the file
       loop: "{{ query('inventory_hostnames', 'all') }}"
       when: "'control' in group_names"
