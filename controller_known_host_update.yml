@@ -8,4 +8,4 @@
     - name: Ensure the Controller is in the file
       when: "'control' in group_names"
       loop: "{{ query('inventory_hostnames', 'all') }}"
-      ansible.builtin.shell: /usr/bin/ssh -o "StrictHostKeyChecking no" {{ item }} date
+      ansible.builtin.command: /usr/bin/ssh -o "StrictHostKeyChecking no" {{ item }} date
