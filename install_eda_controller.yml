@@ -7,7 +7,9 @@
 
     - name: Ensure we have the MY_CONTROLLER_URL
       loop: "{{ my_controller_server_data['instances'] }}"
-      when: ansible_loop.first = true
+      loop_control:
+        extended: true
+      when: ansible_loop.first
       ansible.builtin.set_fact:
         MY_CONTROLLER_URL: "{{ item['public_dns_name'] }}"
 
