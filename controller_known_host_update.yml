@@ -1,5 +1,5 @@
 ---
-- name: Ensure we update the authorized_keys file
+- name: Ensure we update the known_host file on the controllers
   hosts: all
   gather_facts: false
 
