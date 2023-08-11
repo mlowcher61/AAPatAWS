@@ -1,6 +1,6 @@
 ---
-- name: Ensure that root ssh login is disabled
-  hosts: all
+- name: Ensure that root ssh login is disabled on the controller
+  hosts: control
 
   tasks:
 
