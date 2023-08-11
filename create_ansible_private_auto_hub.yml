@@ -54,10 +54,6 @@
         ansible.builtin.set_stats:
           data:
             my_pah_server_data: "{{ ec2_vms }}"
-      
-      - name: Pausing for 40 seconds to allow for the project sync up to finish
-        ansible.builtin.pause:
-          seconds: 40
 
       - name: Create the storage volume we need
         loop: "{{ ec2_vms['instances'] }}"
