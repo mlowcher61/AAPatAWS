@@ -65,3 +65,4 @@
         amazon.aws.ec2_eip:
           device_id: "{{ item['instance_id'] }}"
           region: "{{ region }}"
+          release_on_disassociation: true
