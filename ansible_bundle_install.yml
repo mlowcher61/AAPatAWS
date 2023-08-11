@@ -43,7 +43,7 @@
         - name: Set a no install variable so we can skip the aap ./setup.sh
           ansible.builtin.set_stats:
             data:
-              NO_INSTALL: yes
+              NO_INSTALL: true
 
       rescue:
         - name: Ensure we have a access token the Red Hat Customer portal
