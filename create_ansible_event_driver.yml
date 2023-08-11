@@ -43,18 +43,6 @@
           wait: true
           wait_timeout: 600
 
-      - name: Ensure we have an elastic ip for each event controller
-        loop: "{{ ec2_vms['instances'] }}"
-        amazon.aws.ec2_eip:
-          device_id: "{{ item['instance_id'] }}"
-          region: "{{ region }}"
-          release_on_disassociation: true
-
-      - name: Capture useful server data
-        ansible.builtin.set_stats:
-          data:
-            my_eda_server_data: "{{ ec2_vms }}"
-      
       - name: Create the storage volume we need
         loop: "{{ ec2_vms['instances'] }}"
         amazon.aws.ec2_vol:
@@ -66,6 +54,23 @@
           delete_on_termination: yes
           volume_type: gp3
           iops: 3000
+
+      - name: Ensure we have an elastic ip for each event controller
+        register: ec2_eips
+        loop: "{{ ec2_vms['instances'] }}"
+        amazon.aws.ec2_eip:
+          device_id: "{{ item['instance_id'] }}"
+          region: "{{ region }}"
+          release_on_disassociation: true
+
+      - name: print shit out
+        debug:
+          var: ec2_eips
+
+      - name: Capture useful server data
+        ansible.builtin.set_stats:
+          data:
+            my_eda_server_data: "{{ ec2_vms }}"
 
       - name: Wait 300 seconds for port 22 to become open and contain "OpenSSH"
         loop: "{{ ec2_vms['instances'] }}"
