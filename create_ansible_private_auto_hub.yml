@@ -43,6 +43,13 @@
           wait: true
           wait_timeout: 600
 
+      - name: Ensure we have an elastic ip for each Private Automation Hub
+        loop: "{{ ec2_vms['instances'] }}"
+        amazon.aws.ec2_eip:
+          device_id: "{{ item['instance_id'] }}"
+          region: "{{ region }}"
+          release_on_disassociation: true
+
       - name: Capture useful server data
         ansible.builtin.set_stats:
           data:
@@ -63,10 +70,3 @@
           delete_on_termination: yes
           volume_type: gp3
           iops: 3000
-
-      - name: Ensure we have an elastic ip for each Private Automation Hub
-        loop: "{{ ec2_vms['instances'] }}"
-        amazon.aws.ec2_eip:
-          device_id: "{{ item['instance_id'] }}"
-          region: "{{ region }}"
-          release_on_disassociation: true
