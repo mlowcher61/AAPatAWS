@@ -80,3 +80,8 @@
             src: /var/lib/awx/aap.tar.gz
             dest: /var/lib/awx/
             remote_src: yes
+
+        - name: Set a no install variable so we can skip the aap ./setup.sh
+          ansible.builtin.set_stats:
+            data:
+              NO_INSTALL: false
