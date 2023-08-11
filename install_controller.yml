@@ -5,6 +5,10 @@
 
   tasks:
 
+    - name: Check the NO_INSTALL variable to see if it is == yes  
+      when: NO_INSTALL == yes 
+      ansible.builtin.meta: end_play
+    
     - name: Ensure we have the AAP bundle directory
       register: aap_bundle_dir
       changed_when: false
