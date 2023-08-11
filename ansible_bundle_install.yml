@@ -35,6 +35,7 @@
           ansible.builtin.uri:
             url: https://{{ MY_CONTROLLER_URL }}/api/v2/ping/
             status_code: 200
+            validate_certs: false
 
         - name: The Platform is already up nothing to 
           ansible.builtin.debug:
