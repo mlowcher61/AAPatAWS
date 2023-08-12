@@ -25,7 +25,7 @@
       - name: Creating {{ count }} AWS Ansible Controller VMs in {{ region }}
         register: ec2_vms
         amazon.aws.ec2_instance:
-          name: "Ansible Event Driver {{ count }}"
+          name: "Ansible Event Driver"
           region: "{{ region }}"
           key_name: "zigfreed-ssh-key"
           vpc_subnet_id: "{{ vpc_subnet_id }}"
@@ -63,15 +63,23 @@
           region: "{{ region }}"
           release_on_disassociation: true
 
-      - name: Capture useful server data
-        ansible.builtin.set_stats:
-          data:
-            my_eda_server_data: "{{ ec2_eips }}"
-
       - name: Wait 300 seconds for port 22 to become open and contain "OpenSSH"
         loop: "{{ ec2_eips['results'] }}"
         ansible.builtin.wait_for:
           port: 22
-          host: "{{ item['item']['public_dns_name'] }}"
+          host: "{{ item['item']['public_ip'] }}"
           search_regex: OpenSSH
           delay: 10
+
+      - name: Get instances id with tag {{ servername }} in {{ region }}
+        register: instance_info
+        amazon.aws.ec2_instance_info:
+          region: "{{ region }}"
+          filters:
+            "tag:Name": "Ansible Event Driver"
+          instance-state-name: [ "running"]
+
+      - name: Capture useful server data
+        ansible.builtin.set_stats:
+          data:
+            my_eda_server_data: "{{ instance_info }}"

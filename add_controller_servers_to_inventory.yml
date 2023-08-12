@@ -19,18 +19,18 @@
         return_content: yes       
     
     - name: Update the AAP AWS Managed Inventory with the controllers
-      loop: "{{ my_controller_server_data['results'] }}"
+      loop: "{{ my_controller_server_data['instances'] }}"
       awx.awx.host:
         controller_host: "https://{{ controller_url }}"
         controller_username: "{{ controller_user }}"
         controller_oauthtoken: "{{ new_token.json.token }}"
-        name: "{{ item['item']['public_dns_name'] }}"
+        name: "{{ item['public_dns_name'] }}"
         inventory: "AAP AWS Inventory - Managed"
         state: present
         enabled: true
 
     - name: Create a group for our Automation Controllers
-      loop: "{{ my_controller_server_data['results'] }}"
+      loop: "{{ my_controller_server_data['instances'] }}"
       awx.awx.group:
         controller_host: "https://{{ controller_url }}"
         controller_username: "{{ controller_user }}"
@@ -38,5 +38,5 @@
         name: control
         description: "Automation Controller Group"
         inventory: "AAP AWS Inventory - Managed"
-        hosts: "{{ item['item']['public_dns_name'] }}"
+        hosts: "{{ item['public_dns_name'] }}"
         preserve_existing_hosts: true
