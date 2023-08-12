@@ -79,13 +79,13 @@
           search_regex: OpenSSH
           delay: 10
 
-      - name: Get instances id with tag {{ servername }} in {{ region }}
+      - name: "Get Ansible Event Driver instances in {{ region }}"
         register: instance_info
         amazon.aws.ec2_instance_info:
           region: "{{ region }}"
           filters:
             "tag:Name": "Ansible Private Automation Hub"
-          instance-state-name: [ "running"]
+            instance-state-name: [ "running"]
 
       - name: Capture useful server data
         ansible.builtin.set_stats:
