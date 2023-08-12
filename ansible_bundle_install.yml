@@ -10,21 +10,21 @@
   tasks:
 
     - name: Ensure we have the MY_CONTROLLER_URL
-      loop: "{{ my_controller_server_data['instances'] }}"
+      loop: "{{ my_controller_server_data['results'] }}"
       loop_control:
         extended: true
       when: ansible_loop.first
       ansible.builtin.set_stats:
         data:
-          MY_CONTROLLER_URL: "{{ item['public_dns_name'] }}"
+          MY_CONTROLLER_URL: "{{ item['item']['public_dns_name'] }}"
 
     - name: Ensure we have the MY_CONTROLLER_URL for use in this playbook
-      loop: "{{ my_controller_server_data['instances'] }}"
+      loop: "{{ my_controller_server_data['results'] }}"
       loop_control:
         extended: true
       when: ansible_loop.first
       ansible.builtin.set_fact:
-        MY_CONTROLLER_URL: "{{ item['public_dns_name'] }}"
+        MY_CONTROLLER_URL: "{{ item['item']['public_dns_name'] }}"
 
     - name: Check to see if the ansible platform is up if not run the installer
       block:

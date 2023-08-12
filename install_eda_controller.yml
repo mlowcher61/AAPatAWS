@@ -20,19 +20,19 @@
         backup: true
 
     - name: Ensure the Controller is in the file
-      loop: "{{ my_controller_server_data['instances'] }}"
+      loop: "{{ my_controller_server_data['results'] }}"
       ansible.builtin.lineinfile:
         path: "{{ aap_bundle_dir.stdout }}/inventory"
         insertafter: '^.automationcontroller.$'
-        line: "{{ item['public_dns_name'] }}"
+        line: "{{ item['item']['public_dns_name'] }}"
         state: present
 
     - name: Ensure the EDA Server is in the file
-      loop: "{{ my_eda_server_data['instances'] }}"
+      loop: "{{ my_eda_server_data['results'] }}"
       ansible.builtin.lineinfile:
         path: "{{ aap_bundle_dir.stdout }}/inventory"
         insertafter: '^.automationedacontroller.$'
-        line: "{{ item['public_dns_name'] }}"
+        line: "{{ item['item']['public_dns_name'] }}"
         state: present
 
     - name: Run the installer
