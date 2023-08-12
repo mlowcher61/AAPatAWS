@@ -73,7 +73,7 @@
             my_eda_server_data: "{{ ec2_eips }}"
 
       - name: Wait 300 seconds for port 22 to become open and contain "OpenSSH"
-        loop: "{{ ec2_eips }}"
+        loop: "{{ ec2_eips['results'] }}"
         ansible.builtin.wait_for:
           port: 22
           host: "{{ item['public_dns_name'] }}"
