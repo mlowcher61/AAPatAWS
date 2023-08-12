@@ -76,6 +76,6 @@
         loop: "{{ ec2_eips['results'] }}"
         ansible.builtin.wait_for:
           port: 22
-          host: "{{ item['public_dns_name'] }}"
+          host: "{{ item['item']['public_dns_name'] }}"
           search_regex: OpenSSH
           delay: 10
