@@ -71,10 +71,6 @@
           region: "{{ region }}"
           release_on_disassociation: true
 
-      - name: print shit out
-        debug:
-          var: ec2_eips
-
       - name: Capture useful server data
         ansible.builtin.set_stats:
           data:
