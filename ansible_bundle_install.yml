@@ -3,7 +3,7 @@
   hosts: control
   gather_facts: no
   vars:
-    aap_bundle_sha_value: 4f72015bea62b4fb2907be9c5f13c8d6faa3316ea2e73c6736ded3b82b467783
+    aap_bundle_sha_value: f5c834de9ad0b8ddbd0182b8f75127d4857e7c2a136e6c4f66ef5b92b2a41bb9
     #https://access.redhat.com/downloads/content/480/ver=2.4/rhel---9/2.4/x86_64/product-software
     #if you are getting a 403 error it is because there is a different checksum
 
