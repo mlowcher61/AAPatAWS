@@ -1,0 +1,15 @@
+---
+- name: Ensure my elastic ips are released
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+
+    - name: Get my list of elastic ips
+      register: regional_eip_addresses
+      amazon.aws.ec2_eip_info:
+        region: "{{ region }}"
+
+    - name: Print stuff
+      debug:
+        var: regional_eip_addresses
