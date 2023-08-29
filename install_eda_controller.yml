@@ -38,7 +38,7 @@
     - name: "Update the group_vars/all server_names_hash_bucket_size: '128'"
       ansible.builtin.lineinfile:
         path: "{{ aap_bundle_dir.stdout }}/group_vars/all
-        line: 'server_names_hash_bucket_size: '128''
+        line: "server_names_hash_bucket_size: 128"
         state: present
 
     - name: Run the installer
