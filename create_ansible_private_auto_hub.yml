@@ -7,6 +7,7 @@
        ec2_security_group_name: "{{ vpc_name }}_SECGRP"
        ec2_ansible_group: "{{ user_name }}"
        my_email_address: "{{ user_name }}@redhat.com"
+       keyname: ''
 
     tasks:
 
@@ -27,7 +28,7 @@
         amazon.aws.ec2_instance:
           name: "Ansible Private Automation Hub"
           region: "{{ region }}"
-          key_name: "zigfreed-ssh-key"
+          key_name: "{{ keyname }}"
           vpc_subnet_id: "{{ vpc_subnet_id }}"
           instance_type: "{{ instance_type }}"
           security_group: "{{ ec2_security_group_name }}"
