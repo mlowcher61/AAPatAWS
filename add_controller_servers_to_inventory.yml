@@ -28,6 +28,7 @@
         inventory: "AAP AWS Inventory - Managed"
         state: present
         enabled: true
+        validate_certs: false
 
     - name: Create a group for our Automation Controllers
       loop: "{{ my_controller_server_data['instances'] }}"
