@@ -9,7 +9,6 @@
        my_email_address: "{{ user_name }}@redhat.com"
        keyname: ''
 
-
     tasks:
 
       - name: Looking Up Subnet_id for {{ subnet_name }} if vpc_subnet_id doesn't exist
