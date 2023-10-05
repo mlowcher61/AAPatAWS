@@ -2,12 +2,19 @@
 - name: Ensure ssh authorized key files are updated on all servers
   hosts: all
   gather_facts: false
+  become: true
 
   tasks:
 
     - name: print ec2-user public ssh key
       ansible.builtin.debug:
         var: the_ssh_key
+
+    - name: Ensure authorized key is in place
+      ansible.posix.authorized_key:
+        user: ec2-user
+        state: present
+        key: "{{ the_ssh_key }}"
 
     - name: Ensure authorized key is in place
       ansible.posix.authorized_key:
