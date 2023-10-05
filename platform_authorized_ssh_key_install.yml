@@ -18,7 +18,7 @@
 
     - name: Ensure authorized key is in place
       ansible.posix.authorized_key:
-        user: ec2-user
+        user: mark
         state: present
         key: "{{ the_ssh_key }}"
 
