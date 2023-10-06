@@ -68,6 +68,7 @@
           until: download_aap_tarball is not failed
           retries: 15
           delay: 20
+          become: true
           ansible.builtin.get_url:
             url: "https://api.access.redhat.com/management/v1/images/{{ aap_bundle_sha_value }}/download"
             headers:
