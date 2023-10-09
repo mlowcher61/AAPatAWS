@@ -32,6 +32,7 @@
         state: present
 
     - name: Run the installer
+      become: true
       args:
         chdir: "{{ aap_bundle_dir.stdout }}"
       ansible.builtin.shell:
