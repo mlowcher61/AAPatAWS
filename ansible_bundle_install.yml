@@ -1,9 +1,10 @@
 ---
 - name: Time to install and configure Ansible Automation Platform
-  hosts: control
+  hosts: localhost
   gather_facts: no
   vars:
-    aap_bundle_sha_value: fa9e3ab55fc919d1aaac167f81bb9f841f214be047ea631d69eb4441712f46be
+    aap_bundle_sha_value: 1358f60bea02a1d37f16de1be3a9bca765d82fd383f4072815946de8e7b40c2b
+    #fa9e3ab55fc919d1aaac167f81bb9f841f214be047ea631d69eb4441712f46be
     #f5c834de9ad0b8ddbd0182b8f75127d4857e7c2a136e6c4f66ef5b92b2a41bb9
     #https://access.redhat.com/downloads/content/480/ver=2.4/rhel---9/2.4/x86_64/product-software
     #if you are getting a 403 error it is because there is a different checksum
